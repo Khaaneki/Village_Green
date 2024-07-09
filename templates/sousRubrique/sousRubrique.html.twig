@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    sousRubrique
+{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+    <a href="javascript:history.back()" class="btn btn-secondary mb-3"><</a>
+    <div class="row justify-content-center">
+        {% for sousRubrique in sousRubriques %}
+            <div class="col-md-3 mb-4">
+                <a href="#">
+                    <div class="card bg-dark text-white">
+                        <img class="card-img-top" src="{{ asset('img/sousimg/' ~ sousRubrique.getImage()) }}" alt="sous-image" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ sousRubrique.getLibelleCourt() }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ sousRubrique.getLibelle() }}</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

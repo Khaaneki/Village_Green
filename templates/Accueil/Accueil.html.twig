@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Village Green
+{% endblock %}
+
+{% block body %}
+    <div class="container my-4">
+        <div class="row">
+            <img src="{{ asset('img/background/banner.png') }}" alt="banner">
+        </div>
+    </div>
+    <div class="container">
+    <div class="row">
+        {% for Rubrique in rubriques %}
+            <div class="col-md-3 mb-4">
+                <a href="{{ path('app_sous_rubrique', {'Id_rubrique': Rubrique.id}) }}">
+                    <div class="card card-c bg-dark text-white">
+                        <img class="card-img-top" src="{{ asset('img/cat/' ~ Rubrique.getImage()) }}" alt="cat-image">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ Rubrique.getLibelleCourt() }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+    <div class="container" style="background-color: white; color: black; margin-bottom: 20px;">
+        <div class="row">
+            <h3>Nos marques</h3>
+            <div class="d-flex col-12">
+                <a href="#" class="me-5">
+                    <img src="img/marque/yamaha.png" alt="marque" style="width: 240px; height: 60px;">
+                </a>
+                <a href="#" class="me-5">
+                    <img src="img/marque/meinl.png" alt="marque" style="width: 140px; height: 60px;">
+                </a>
+                <a href="#" class="me-5">
+                    <img src="" alt="marque" style="width: 24px; height: 24px;">
+                </a>
+                <a href="#" class="me-5">
+                    <img src="" alt="marque" style="width: 24px; height: 24px;">
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
