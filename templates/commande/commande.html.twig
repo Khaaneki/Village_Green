@@ -4,19 +4,19 @@
 <div class="parallax">
     <div class="container mt-4 mb-5">
         <div class="row">
-            <!-- Formulaire de coordonnées, livraison et paiement -->
+            <!-- Formulaire de coordonnées -->
             <div class="col-lg-6">
                 <div class="card no-hover h-100 shadow-sm p-4">
                     <h2 class="mb-4 text-center">Coordonnées</h2>
                     {{ form_start(form, { 'attr': {'class': 'needs-validation', 'novalidate': true} }) }}
                     
-                    <!-- Email Field -->
+                    <!-- Email -->
                     <div class="form-group mb-3">
                         {{ form_label(form.mail_facturation, 'Adresse e-mail', {'label_attr': {'class': 'form-label'}}) }}
                         {{ form_widget(form.mail_facturation, {'attr': {'class': 'form-control'}}) }}
                     </div>
 
-                    <!-- Livraison Section -->
+                    <!-- Livraison -->
                     <h2 class="mb-4 text-center">Livraison</h2>
                     <div class="form-group mb-3">
                         {{ form_label(form.adresse_livraison, 'Adresse', {'label_attr': {'class': 'form-label'}}) }}
@@ -31,7 +31,7 @@
                         {{ form_widget(form.telephone_facturation, {'attr': {'class': 'form-control'}}) }}
                     </div>
 
-                    <!-- Payment Details Section -->
+                    <!-- Details Paiement-->
                     <h2 class="mb-4 text-center">Détails de paiement</h2>
                     <div class="form-group mb-3">
                         {{ form_label(form.moyen_paiement, 'Moyen de paiement', {'label_attr': {'class': 'form-label'}}) }}

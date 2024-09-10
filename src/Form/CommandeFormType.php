@@ -25,7 +25,7 @@ class CommandeFormType extends AbstractType
             'widget' => 'single_text',
             'label' => 'Date de la commande',
             'required' => true,
-            'disabled' => true, // Désactive le champ dans le formulaire
+            'disabled' => true,
         ])
             ->add('moyen_paiement', ChoiceType::class, [
                 'choices' => [
