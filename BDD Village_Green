@@ -1,0 +1,18 @@
+INSERT INTO article (Id_article, libelle_court, libelle, image, prix_HT, Id_sous_rubrique)
+VALUES 
+(1, "PEARL DRUM", "PRIMERO 6+7 - NATUREL", "Bongos.png", 159, 1),
+(2, "TANGA", "DJEMB 12\" DESIGN BOIS", "djembe.png", 59, 1),
+(3, "BERGERAULT", "MCSD - METALLOPHONE COMPACTE DIATONIQUE SOPRANO", "xylophone.png", 304, 2),
+(4, "LP LATIN PERCUSSION", "LP449 - BAR CHIMES STUDIO (25 TUBES )", "chimes.png", 79, 2),
+(5, "WOODBRASS", "DP2 NOIR + BANQUETTE OFFERTE", "woodbrass.png", 449, 3),
+(6, "YAMAHA", "CLP-725 B", "yamaha.png", 1349, 3),
+(7, "MOOG", "MINIMOOG MODEL-D EDITION 2022", "moog.png", 4849, 4),
+(8, "YAMAHA", "MODX6+", "modx6.png", 1279, 4),
+(9, "GEWA", "IDEALE VIOLON 1/4", "gewa.png", 369, 5),
+(10, "HERALD", "VIOLON MASSIF 4/4 (TOUCHE ACAJOU)", "herald.png", 129, 5),
+(11, "EAGLETONE", "RIVERSIDE NOIRE", "eagletone.png", 95, 6),
+(12, "LAG", "TIKI TKU8C UKULELE CONCERT", "lag.png", 69, 6),
+(13, "WOODBRASS", "WTP200 - SIB VERNI", "trompette.png", 149, 7),
+(14, "YAMAHA", "YSL-354E - TENOR SIMPLE VERNI", "trombone.png", 898, 7),
+(15, "BUFFET CRAMPON", "LEGENDE SIB (19 CLÉS) - BC1156L-2-0", "buffet.png", 7399, 8),
+(16, "MURAMATSU", "EX-III-RCI", "traversiere.jpg", 1180.83, 8);

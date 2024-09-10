@@ -25,14 +25,14 @@ class SousRubrique
     private ?string $image = null;
 
     #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'sous_rubrique')]
-    private Collection $sous_rubrique;
+    private Collection $articles;
 
     #[ORM\ManyToOne(inversedBy: 'rubrique')]
     private ?Rubrique $rubrique = null;
 
     public function __construct()
     {
-        $this->sous_rubrique = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -79,27 +79,27 @@ class SousRubrique
     /**
      * @return Collection<int, Article>
      */
-    public function getIdSousRubrique(): Collection
+    public function getArticles(): Collection
     {
-        return $this->sous_rubrique;
+        return $this->articles;
     }
 
-    public function addIdSousRubrique(Article $idSousRubrique): static
+    public function addArticle(Article $article): static
     {
-        if (!$this->sous_rubrique->contains($idSousRubrique)) {
-            $this->sous_rubrique->add($idSousRubrique);
-            $idSousRubrique->setIdSousRubrique($this);
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+            $article->setSousRubrique($this);
         }
 
         return $this;
     }
 
-    public function removeIdSousRubrique(Article $idSousRubrique): static
+    public function removeArticle(Article $article): static
     {
-        if ($this->sous_rubrique->removeElement($idSousRubrique)) {
+        if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($idSousRubrique->getIdSousRubrique() === $this) {
-                $idSousRubrique->setIdSousRubrique(null);
+            if ($article->getSousRubrique() === $this) {
+                $article->setSousRubrique(null);
             }
         }
 

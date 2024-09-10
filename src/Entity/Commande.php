@@ -55,6 +55,9 @@ class Commande
     #[ORM\Column(length: 20)]
     private ?string $etat_livraison = null;
 
+    #[ORM\OneToMany(targetEntity: SeComposeDe::class, mappedBy: 'id_commande', orphanRemoval: true, cascade: ['persist'])]
+    private Collection $composéDe;
+
     #[ORM\OneToMany(targetEntity: BonLivraison::class, mappedBy: 'commande')]
     private Collection $commande;
 
@@ -64,6 +67,7 @@ class Commande
     public function __construct()
     {
         $this->commande = new ArrayCollection();
+        $this->date_commande = new \DateTime('now');
     }
 
     public function getId(): ?int
@@ -223,6 +227,36 @@ class Commande
     public function setEtatLivraison(string $etat_livraison): static
     {
         $this->etat_livraison = $etat_livraison;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SeComposeDe>
+     */
+    public function getComposéDe(): Collection
+    {
+        return $this->composéDe;
+    }
+
+    public function addSeComposeDe(SeComposeDe $seComposeDe): static
+    {
+        if (!$this->composéDe->contains($seComposeDe)) {
+            $this->composéDe->add($seComposeDe);
+            $seComposeDe->setIdCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeComposeDe(SeComposeDe $seComposeDe): static
+    {
+        if ($this->composéDe->removeElement($seComposeDe)) {
+            // set the owning side to null (unless already changed)
+            if ($seComposeDe->getIdCommande() === $this) {
+                $seComposeDe->setIdCommande(null);
+            }
+        }
 
         return $this;
     }

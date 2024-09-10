@@ -5,80 +5,74 @@
 {% endblock %}
 
 {% block body %}
+<div class="parallax">
     <div class="container mt-5 my-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card no-hover">
                     <div class="card-body">
+                        {% for flash_error in app.flashes('verify_email_error') %}
+                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                        {% endfor %}
+                        
                         <h1 class="text-center mb-4" style="color: Black;">
                             M'inscrire
                         </h1>
 
                         {{ form_errors(registrationForm) }}
 
-                        {{ form_start(registrationForm) }}
+                        {{ form_start(registrationForm, {'attr': {'id': 'registrationForm', 'novalidate': 'novalidate'}}) }}
+
+                        <fieldset class="mb-3">
+                            <legend>Mon identité</legend>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.nom, {'attr': {'class': 'form-control', 'id': 'nom'}}) }}
+                                <span id="nom-error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.prenom, {'attr': {'class': 'form-control', 'id': 'prenom'}}) }}
+                                <span id="prenom-error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control', 'id': 'mail'}}) }}
+                                <span id="mail-error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'id': 'password'}}) }}
+                                <span id="password-error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirmer le mot de passe">
+                                <span id="confirm-password-error" class="text-danger"></span>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="mb-3">
+                            <legend>Mes coordonnées</legend>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.pays, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.ville, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.adresse, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.cp, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(registrationForm.telephone, {'attr': {'class': 'form-control', 'id': 'telephone'}}) }}
+                                <span id="telephone-error" class="text-danger"></span>
+                            </div>
+                        </fieldset>
 
                         <div class="mb-3">
-                            {{ form_label(registrationForm.nom) }}
-                            {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control' }}
-                            ) }}
-                        </div>
-
-                        <div class="mb-3">
-                            {{ form_label(registrationForm.prenom) }}
-                            {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control' }}
-                            ) }}
-                        </div>
-
-                        <div class="mb-3">
-                            {{ form_label(registrationForm.email) }}
-                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control' }}
-                            ) }}
-                        </div>
-
-                        <div class="mb-3">
-                            {{ form_label(registrationForm.plainPassword) }}
-                            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control' }}
-                            ) }}
-                        </div>
-
-                        <div class="mb-3">
-                            {{ form_label(registrationForm.adresse) }}
-                            {{ form_widget(registrationForm.adresse, {'attr': {'class': 'form-control' }}
-                            ) }}
-                        </div>
-
-                        <div class="mb-3">
-                            {{ form_label(registrationForm.cp) }}
-                            {{ form_widget(registrationForm.cp, {'attr': {'class': 'form-control' }}
-                            ) }}
-                        </div>
-
-                        <div class="mb-3">
-                            {{ form_label(registrationForm.pays) }}
-                            {{ form_widget(registrationForm.pays, {'attr': {'class': 'form-control' }}
-                            ) }}
-                        </div>
-
-                        <div class="mb-3">
-                            {{ form_label(registrationForm.ville) }}
-                            {{ form_widget(registrationForm.ville, {'attr': {'class': 'form-control' }}
-                            ) }}
-                        </div>
-
-                        <div class="mb-3">
-                            {{ form_label(registrationForm.telephone) }}
-                            {{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control' }}
-                            ) }}
-                        </div>
-
-                        <div class="mb-3">
-                            {{ form_label(registrationForm.agreeTerms) }}
-                            {{ form_widget(registrationForm.agreeTerms) }}
+                            {{ form_row(registrationForm.agreeTerms) }}
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" id="button1" class="btn btn-secondary">
                                 M'inscrire
                             </button>
                         </div>
@@ -96,4 +90,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

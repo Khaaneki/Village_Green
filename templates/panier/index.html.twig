@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre panier{% endblock %}
+
+{% block body %}
+<div class="parallax">
+    <div class="container">
+        <section class="row" style="background-color: white; color: black; margin-top: 20px;">
+            <div class="col-12">
+                <h1 class="text-center">Panier</h1>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Image</th>
+                            <th>Produit</th>
+                            <th>Prix Hors Taxe</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                            <tr>
+                                <td>
+                                    <div class="img-panier">
+                                        <img src="{{ asset('img/article/' ~ item.article.image) }}" alt="{{ item.article.libelle }}">
+                                    </div>
+                                </td>
+                                <td>{{ item.article.libelleCourt }} <br> {{ item.article.libelle }}</td>
+                                <td>{{ item.article.prixHT }} €</td>
+                                <td>{{ item.quantite }}</td>
+                                <td>{{ item.quantite * item.article.prixHT }} €</td>
+                                <td>
+                                    <a href="{{ path('panier_add', {id: item.article.id}) }}" class="btn btn-secondary">+</a>
+                                    <a href="{{ path('panier_remove', {id: item.article.id}) }}" class="btn btn-secondary">-</a>
+                                    <a href="{{ path('panier_del', {id: item.article.id}) }}" class="btn btn-secondary">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6">Votre panier est vide</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" class="text-right font-weight-bold">Total</td>
+                            <td>{{ total }} €</td>
+                            <td>
+                                <a href="{{ path('panier_empty') }}" class="btn btn-secondary">Vider</a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <br>
+                <div class="text-center">
+                    <a href="{{ path('app_Accueil') }}" class="btn btn-secondary">Continuer mes achats</a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('app_commande_ajout') }}" class="btn btn-secondary">Valider le panier</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="btn btn-secondary">Connectez-vous pour valider le panier</a>
+                    {% endif %}
+
+                    {# Debug info #}
+                    <p>Connecté: {{ is_granted('IS_AUTHENTICATED_FULLY') ? 'Oui' : 'Non' }}</p>
+                        
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="parallax">
+    <div class="container mt-4 mb-5">
+        <div class="row">
+            <!-- Formulaire de coordonnées, livraison et paiement -->
+            <div class="col-lg-6">
+                <div class="card no-hover h-100 shadow-sm p-4">
+                    <h2 class="mb-4 text-center">Coordonnées</h2>
+                    {{ form_start(form, { 'attr': {'class': 'needs-validation', 'novalidate': true} }) }}
+                    
+                    <!-- Email Field -->
+                    <div class="form-group mb-3">
+                        {{ form_label(form.mail_facturation, 'Adresse e-mail', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.mail_facturation, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <!-- Livraison Section -->
+                    <h2 class="mb-4 text-center">Livraison</h2>
+                    <div class="form-group mb-3">
+                        {{ form_label(form.adresse_livraison, 'Adresse', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.adresse_livraison, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group mb-3">
+                        {{ form_label(form.ville_facturation, 'Ville', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.ville_facturation, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group mb-3">
+                        {{ form_label(form.telephone_facturation, 'Téléphone', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.telephone_facturation, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <!-- Payment Details Section -->
+                    <h2 class="mb-4 text-center">Détails de paiement</h2>
+                    <div class="form-group mb-3">
+                        {{ form_label(form.moyen_paiement, 'Moyen de paiement', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.moyen_paiement, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="form-group mb-3">
+                        {{ form_label(form.adresse_facturation, 'Adresse de facturation', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.adresse_facturation, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        {{ form_label(form.date_commande, 'Date de la prise de commande', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.date_commande, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-block">Commander et Payer</button>
+                    </div>
+                    
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+            <!-- Récapitulatif de commande -->
+            <div class="col-lg-6">
+                <div class="card no-hover h-100 shadow-sm p-4">
+                    <h2 class="mb-4 text-center">Récapitulatif Commande</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Nom</th>
+                                    <th>Prix unitaire</th>
+                                    <th>Quantité</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for element in panier %}
+                                    <tr>
+                                        <td>
+                                            <div class="img-panier">
+                                            <img src="{{ asset('img/article/' ~ element.article.image) }}" alt="{{ element.article.libellecourt }}" class="img-fluid" />
+                                        </div>
+                                        </td>
+                                        <td>{{ element.article.libellecourt }}</td>
+                                        <td>{{ element.article.prixHT }} €</td>
+                                        <td>{{ element.quantité }}</td>
+                                        <td>{{ element.quantité * element.article.prixHT }} €</td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6" class="text-center">Aucun article dans le panier</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot class="font-weight-bold">
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td>HT</td>
+                                    <td>{{ total }} € HT</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td>TVA</td>
+                                    <td>{{ total * 0.2 }} €</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Total</td>
+                                    <td>
+                                        {% if reduction is null %}
+                                            Pas de remise
+                                        {% else %}
+                                            Remise {{ reduction }} %
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ total * 1.2 - total * reduction / 100 }} €</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

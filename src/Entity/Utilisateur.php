@@ -48,7 +48,13 @@ class Utilisateur implements PasswordAuthenticatedUserInterface, UserInterface
     private ?string $mdp = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
-    private ?string $reduction = '0.00';
+    private ?float $reduction = 0.00;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $isVerified = false;
+
+    #[ORM\Column(type: 'string')]
+    private $resetToken;
 
     #[ORM\OneToMany(targetEntity: Encadre::class, mappedBy: 'utilisateur')]
     private Collection $utilisateur;
@@ -57,6 +63,8 @@ class Utilisateur implements PasswordAuthenticatedUserInterface, UserInterface
     {
         $this->utilisateur = new ArrayCollection();
     }
+
+    // getters et setters
 
     public function getId(): ?int
     {
@@ -171,15 +179,38 @@ class Utilisateur implements PasswordAuthenticatedUserInterface, UserInterface
         return $this;
     }
 
-    public function getReduction(): ?string
+    public function getReduction(): ?float
     {
         return $this->reduction;
     }
 
-    public function setReduction(string $reduction): static
+    public function setReduction(float $reduction): static
     {
         $this->reduction = $reduction;
 
+        return $this;
+    }
+
+    public function getIsVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+    
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
         return $this;
     }
 
@@ -229,7 +260,7 @@ class Utilisateur implements PasswordAuthenticatedUserInterface, UserInterface
 
     public function eraseCredentials()
     {
-
+        // Implement this method if needed
     }
 
     public function getUserIdentifier(): string

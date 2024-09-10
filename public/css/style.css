@@ -4,12 +4,14 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    padding-bottom: 100px;
 }
 
 .card {
     transition: all 0.3s;
     margin: 0 0.5em;
     box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    width: 100%;
 }
 
 .card:hover {
@@ -17,7 +19,60 @@
     background-color: rgb(71, 71, 71) !important;
 }
 
-a{
+.no-hover:hover {
+    transform: none;
+    background-color: white !important;
+}
+
+a {
     text-decoration: none;
     color: black;
+}
+
+.img-article {
+    width: 100%;
+    height: 15rem;
+    overflow: hidden;
+}
+
+.img-article img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.img-panier {
+    width: 10rem;
+    height: 10rem;
+    overflow: hidden;
+}
+
+.img-panier img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.table {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+thead th {
+    text-align: center;
+}
+
+tbody td, tfoot td {
+    text-align: center;
+}
+
+.btn {
+    margin: 0 5px;
+}
+
+.text-danger {
+    color: red;
 }

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Article
+{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+    <a href="javascript:history.back()" class="btn btn-dark"><</a>
+    <div class="row justify-content-center">
+        {% for article in articles %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <a href="{{ path('app_view', {'id': article.id}) }}">
+                    <div class="card bg-dark text-white">
+                        <div class="img-article">
+                            <img class="card-img-top" src="{{ asset('img/article/' ~ article.image) }}" alt="{{ article.libelleCourt }}">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.libelleCourt }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ article.libelle }}</h6>
+                            <p class="card-text">
+                                <strong>{{ article.prixHT }}</strong> HT
+                                <br>
+                                <strong>{{ (article.prixHT / 12) | number_format(2) }}</strong> € / mois
+                            </p>
+                            <ul class="list-unstyled">
+                                <li><span class="text-danger">&#9679;</span> Stock Internet</li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

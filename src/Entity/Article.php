@@ -26,10 +26,11 @@ class Article
     private ?string $image = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $prix_HT = null;
+    private ?string $prixHT = null;
 
-    #[ORM\ManyToOne(inversedBy: 'sous_rubrique')]
-    private ?SousRubrique $sous_rubrique = null;
+    #[ORM\ManyToOne(targetEntity: SousRubrique::class, inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?SousRubrique $sousRubrique = null;
 
     #[ORM\OneToMany(targetEntity: Fournit::class, mappedBy: 'article')]
     private Collection $article;
@@ -86,25 +87,24 @@ class Article
 
     public function getPrixHT(): ?string
     {
-        return $this->prix_HT;
+        return $this->prixHT;
     }
 
-    public function setPrixHT(string $prix_HT): static
+    public function setPrixHT(string $prixHT): static
     {
-        $this->prix_HT = $prix_HT;
+        $this->prixHT = $prixHT;
 
         return $this;
     }
 
-    public function getIdSousRubrique(): ?SousRubrique
+    public function getSousRubrique(): ?SousRubrique
     {
-        return $this->sous_rubrique;
+        return $this->sousRubrique;
     }
 
-    public function setIdSousRubrique(?SousRubrique $sous_rubrique): static
+    public function setSousRubrique(?SousRubrique $sousRubrique): static
     {
-        $this->sous_rubrique = $sous_rubrique;
-
+        $this->sousRubrique = $sousRubrique;
         return $this;
     }
 
