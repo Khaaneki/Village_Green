@@ -21,35 +21,37 @@ class CommandeFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('date_commande', DateType::class, [
-            'widget' => 'single_text',
-            'label' => 'Date de la commande',
-            'required' => true,
-            'disabled' => true,
-        ])
+            ->add('date_commande', DateType::class, [
+                'widget' => 'single_text',
+                'label' => 'Date de la commande',
+                'required' => true,
+                'disabled' => true,
+            ])
             ->add('moyen_paiement', ChoiceType::class, [
                 'choices' => [
                     'Carte Bancaire' => 'Carte Bancaire',
-                    'PayPal' => 'PayPal',
-                    'Virement Bancaire' => 'Virement Bancaire',
                 ],
                 'label' => 'Moyen de paiement',
             ])
             ->add('adresse_facturation', TextType::class, [
                 'label' => 'Adresse de facturation',
+                'required' => true,
             ])
             ->add('ville_facturation', TextType::class, [
                 'label' => 'Ville de facturation',
+                'required' => true,
             ])
             ->add('telephone_facturation', TelType::class, [
                 'label' => 'Téléphone',
+                'required' => true,
             ])
             ->add('mail_facturation', EmailType::class, [
                 'label' => 'Email de facturation',
+                'required' => true,
             ])
             ->add('adresse_livraison', TextType::class, [
                 'label' => 'Adresse de livraison',
-                'required' => false,
+                'required' => true,
             ]);
     }
 

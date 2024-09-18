@@ -67,18 +67,18 @@ class __TwigTemplate_461246f26c0aeb77733c0f594c21e62f extends Template
 
         // line 4
         yield "<div class=\"parallax\">
-    <div class=\"container mt-4 mb-5\">
-        <div class=\"row\">
-            <!-- Formulaire de coordonnées, livraison et paiement -->
-            <div class=\"col-lg-6\">
-                <div class=\"card no-hover h-100 shadow-sm p-4\">
+    <div class=\"container mt-4\">
+        <div class=\"row justify-content-center\">
+            <!-- Formulaire de coordonnées -->
+            <div class=\"col-lg-6 mx-auto\">
+                <div class=\"card no-hover h-100 p-4\">
                     <h2 class=\"mb-4 text-center\">Coordonnées</h2>
                     ";
         // line 11
         yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 11, $this->source); })()), 'form_start', ["attr" => ["class" => "needs-validation", "novalidate" => true]]);
         yield "
                     
-                    <!-- Email Field -->
+                    <!-- Email -->
                     <div class=\"form-group mb-3\">
                         ";
         // line 15
@@ -90,7 +90,7 @@ class __TwigTemplate_461246f26c0aeb77733c0f594c21e62f extends Template
         yield "
                     </div>
 
-                    <!-- Livraison Section -->
+                    <!-- Livraison -->
                     <h2 class=\"mb-4 text-center\">Livraison</h2>
                     <div class=\"form-group mb-3\">
                         ";
@@ -123,7 +123,7 @@ class __TwigTemplate_461246f26c0aeb77733c0f594c21e62f extends Template
         yield "
                     </div>
 
-                    <!-- Payment Details Section -->
+                    <!-- Details Paiement-->
                     <h2 class=\"mb-4 text-center\">Détails de paiement</h2>
                     <div class=\"form-group mb-3\">
                         ";
@@ -171,7 +171,7 @@ class __TwigTemplate_461246f26c0aeb77733c0f594c21e62f extends Template
             </div>
 
             <!-- Récapitulatif de commande -->
-            <div class=\"col-lg-6\">
+            <div class=\"col-lg-6 mx-auto\">
                 <div class=\"card no-hover h-100 shadow-sm p-4\">
                     <h2 class=\"mb-4 text-center\">Récapitulatif Commande</h2>
                     <div class=\"table-responsive\">
@@ -324,21 +324,21 @@ class __TwigTemplate_461246f26c0aeb77733c0f594c21e62f extends Template
 
 {% block body %}
 <div class=\"parallax\">
-    <div class=\"container mt-4 mb-5\">
-        <div class=\"row\">
-            <!-- Formulaire de coordonnées, livraison et paiement -->
-            <div class=\"col-lg-6\">
-                <div class=\"card no-hover h-100 shadow-sm p-4\">
+    <div class=\"container mt-4\">
+        <div class=\"row justify-content-center\">
+            <!-- Formulaire de coordonnées -->
+            <div class=\"col-lg-6 mx-auto\">
+                <div class=\"card no-hover h-100 p-4\">
                     <h2 class=\"mb-4 text-center\">Coordonnées</h2>
                     {{ form_start(form, { 'attr': {'class': 'needs-validation', 'novalidate': true} }) }}
                     
-                    <!-- Email Field -->
+                    <!-- Email -->
                     <div class=\"form-group mb-3\">
                         {{ form_label(form.mail_facturation, 'Adresse e-mail', {'label_attr': {'class': 'form-label'}}) }}
                         {{ form_widget(form.mail_facturation, {'attr': {'class': 'form-control'}}) }}
                     </div>
 
-                    <!-- Livraison Section -->
+                    <!-- Livraison -->
                     <h2 class=\"mb-4 text-center\">Livraison</h2>
                     <div class=\"form-group mb-3\">
                         {{ form_label(form.adresse_livraison, 'Adresse', {'label_attr': {'class': 'form-label'}}) }}
@@ -353,7 +353,7 @@ class __TwigTemplate_461246f26c0aeb77733c0f594c21e62f extends Template
                         {{ form_widget(form.telephone_facturation, {'attr': {'class': 'form-control'}}) }}
                     </div>
 
-                    <!-- Payment Details Section -->
+                    <!-- Details Paiement-->
                     <h2 class=\"mb-4 text-center\">Détails de paiement</h2>
                     <div class=\"form-group mb-3\">
                         {{ form_label(form.moyen_paiement, 'Moyen de paiement', {'label_attr': {'class': 'form-label'}}) }}
@@ -380,7 +380,7 @@ class __TwigTemplate_461246f26c0aeb77733c0f594c21e62f extends Template
             </div>
 
             <!-- Récapitulatif de commande -->
-            <div class=\"col-lg-6\">
+            <div class=\"col-lg-6 mx-auto\">
                 <div class=\"card no-hover h-100 shadow-sm p-4\">
                     <h2 class=\"mb-4 text-center\">Récapitulatif Commande</h2>
                     <div class=\"table-responsive\">

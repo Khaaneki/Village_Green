@@ -5,72 +5,62 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container my-4">
-        <div class="row">
-            <img src="{{ asset('img/background/banner.png') }}" alt="banner"></div>
-        </div>
-        <div class="container">
+    <div class="parallax">
+        <div class="container my-4">
             <div class="row">
-                {% for Rubrique in rubriques %}
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <a href="{{ path('app_sous_rubrique', {'Id_rubrique': Rubrique.id}) }}">
-                            <div class="card card-c bg-dark text-white">
-                                <img class="card-img-top" src="{{ asset('img/cat/' ~ Rubrique.getImage()) }}" alt="cat-image">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center">
-                                            {{ Rubrique.getLibelleCourt() }}
-                                        </h5>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
+                <img src="{{ asset('img/background/banner.png') }}" alt="banner"></div>
             </div>
-
-            <div class="container" style="background-color: white; color: black; margin-bottom: 20px;">
+            <div class="container">
                 <div class="row">
-                    <h3>
-                        Nos marques
-                    </h3>
-                    <div class="d-flex col-12 flex-wrap">
-                        <a href="#" class="me-5">
-                            <img src="img/marque/yamaha.png" alt="marque" style="width: 240px; height: 60px;">
-                        </a>
-                        <a href="#" class="me-5">
-                            <img src="img/marque/wb.png" alt="marque" style="width: 160px; height: 90px;">
-                        </a>
-                        <a href="#" class="me-5">
-                            <img src="img/marque/bergerault.png" alt="marque" style="width: 160px; height: 60px;">
-                        </a>
-                        <a href="#" class="me-5">
-                            <img src="img/marque/buffet.png" alt="marque" style="width: 160px; height: 60px;">
-                        </a>
-                       <a href="#" class="me-5">
-                            <img src="img/marque/eagletone.png" alt="marque" style="width: 120px; height: 60px;">
-                        </a>
-                        <a href="#" class="me-5">
-                            <img src="img/marque/gewa.png" alt="marque" style="width: 120px; height: 60px;">
-                        </a>
-                        <a href="#" class="me-5">
-                            <img src="img/marque/herald.jpg" alt="marque" style="width: 120px; height: 60px;">
-                        </a>
-                        <a href="#" class="me-5">
-                            <img src="img/marque/lag.png" alt="marque" style="width: 120px; height: 60px;">
-                        </a>
-                        <a href="#" class="me-5">
-                            <img src="img/marque/lp.png" alt="marque" style="width: 160px; height: 60px;">
-                        </a>
-                        <a href="#" class="me-5">
-                            <img src="img/marque/moog.png" alt="marque" style="width: 120px; height: 60px;">
-                        </a>
-                        <a href="#" class="me-5">
-                            <img src="img/marque/muramatsu.png" alt="marque" style="width: 120px; height: 60px;">
-                        </a>
-                        <a href="#" class="me-5">
-                            <img src="img/marque/pearl.png" alt="marque" style="width: 120px; height: 60px;">
-                        </a>
+                    {% for Rubrique in rubriques %}
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                            <a href="{{ path('app_sous_rubrique', {'Id_rubrique': Rubrique.id}) }}">
+                                <div class="card card-c bg-dark text-white">
+                                    <img class="card-img-top" src="{{ asset('img/cat/' ~ Rubrique.getImage()) }}" alt="cat-image">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">
+                                                {{ Rubrique.getLibelleCourt() }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
-            </div>
-{% endblock %}
+
+                <div class="container" style="background-color: white; color: black; margin-bottom: 20px;">
+                    <div class="row">
+                        <h3>
+                            Nos marques
+                        </h3>
+                        <div class="d-flex col-12 flex-wrap">
+                            <a href="#" class="me-5">
+                                <img src="img/marque/yamaha.png" alt="marque" style="width: 240px; height: 60px;"></a>
+                                <a href="#" class="me-5">
+                                    <img src="img/marque/wb.png" alt="marque" style="width: 160px; height: 90px;"></a>
+                                    <a href="#" class="me-5">
+                                        <img src="img/marque/bergerault.png" alt="marque" style="width: 160px; height: 60px;"></a>
+                                        <a href="#" class="me-5">
+                                            <img src="img/marque/buffet.png" alt="marque" style="width: 160px; height: 60px;"></a>
+                                            <a href="#" class="me-5">
+                                                <img src="img/marque/eagletone.png" alt="marque" style="width: 120px; height: 60px;"></a>
+                                                <a href="#" class="me-5">
+                                                    <img src="img/marque/gewa.png" alt="marque" style="width: 120px; height: 60px;"></a>
+                                                    <a href="#" class="me-5">
+                                                        <img src="img/marque/herald.jpg" alt="marque" style="width: 120px; height: 60px;"></a>
+                                                        <a href="#" class="me-5">
+                                                            <img src="img/marque/lag.png" alt="marque" style="width: 120px; height: 60px;"></a>
+                                                            <a href="#" class="me-5">
+                                                                <img src="img/marque/lp.png" alt="marque" style="width: 160px; height: 60px;"></a>
+                                                                <a href="#" class="me-5">
+                                                                    <img src="img/marque/moog.png" alt="marque" style="width: 120px; height: 60px;"></a>
+                                                                    <a href="#" class="me-5">
+                                                                        <img src="img/marque/muramatsu.png" alt="marque" style="width: 120px; height: 60px;"></a>
+                                                                        <a href="#" class="me-5">
+                                                                            <img src="img/marque/pearl.png" alt="marque" style="width: 120px; height: 60px;"></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endblock %}

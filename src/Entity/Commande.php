@@ -66,7 +66,8 @@ class Commande
 
     public function __construct()
     {
-        $this->commande = new ArrayCollection();
+        $this->composéDe = new ArrayCollection(); // Initialisation de la collection
+        $this->commande = new ArrayCollection(); // Initialisation de la collection
         $this->date_commande = new \DateTime('now');
     }
 
@@ -264,44 +265,42 @@ class Commande
     /**
      * @return Collection<int, BonLivraison>
      */
-    public function getIdCommande(): Collection
+    public function getCommande(): Collection
     {
         return $this->commande;
     }
 
-    public function addIdCommande(BonLivraison $idCommande): static
+    public function addCommande(BonLivraison $commande): static
     {
-        if (!$this->commande->contains($idCommande)) {
-            $this->commande->add($idCommande);
-            $idCommande->setIdCommande($this);
+        if (!$this->commande->contains($commande)) {
+            $this->commande->add($commande);
+            $commande->setIdCommande($this);
         }
 
         return $this;
     }
 
-    public function removeIdCommande(BonLivraison $idCommande): static
+    public function removeCommande(BonLivraison $commande): static
     {
-        if ($this->commande->removeElement($idCommande)) {
+        if ($this->commande->removeElement($commande)) {
             // set the owning side to null (unless already changed)
-            if ($idCommande->getIdCommande() === $this) {
-                $idCommande->setIdCommande(null);
+            if ($commande->getIdCommande() === $this) {
+                $commande->setIdCommande(null);
             }
         }
 
         return $this;
     }
 
-    public function getIdUtilisateur(): ?Utilisateur
+    public function getUtilisateur(): ?Utilisateur
     {
         return $this->utilisateur;
     }
 
-    public function setIdUtilisateur(?Utilisateur $utilisateur): static
+    public function setUtilisateur(?Utilisateur $utilisateur): static
     {
         $this->utilisateur = $utilisateur;
 
         return $this;
-
-}
-
+    }
 }

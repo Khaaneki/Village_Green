@@ -1,22 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('registrationForm');
-    const nomError = document.getElementById('nom-error');
-    const prenomError = document.getElementById('prenom-error');
-    const mailError = document.getElementById('mail-error');
-    const passwordError = document.getElementById('password-error');
-    const confirmPasswordError = document.getElementById('confirm-password-error');
-    const telephoneError = document.getElementById('telephone-error');
+    const nom_error = document.getElementById('nom-error');
+    const prenom_error = document.getElementById('prenom-error');
+    const mail_error = document.getElementById('mail-error');
+    const password_error = document.getElementById('password-error');
+    const confirmPassword_error = document.getElementById('confirm-password-error');
+    const telephone_error = document.getElementById('telephone-error');
     
     form.addEventListener('submit', function(e) {
         let valid = true;
 
         // Efface les messages d'erreur
-        nomError.innerHTML = "";
-        prenomError.innerHTML = "";
-        mailError.innerHTML = "";
-        passwordError.innerHTML = "";
-        confirmPasswordError.innerHTML = "";
-        telephoneError.innerHTML = "";
+        nom_error.innerHTML = "";
+        prenom_error.innerHTML = "";
+        mail_error.innerHTML = "";
+        password_error.innerHTML = "";
+        confirmPassword_error.innerHTML = "";
+        telephone_error.innerHTML = "";
 
         // Récupère les valeurs des champs
         const nom = form.elements['registrationForm[nom]'].value.trim();
@@ -27,15 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const telephone = form.elements['registrationForm[telephone]'].value.trim();
 
         // Expressions régulières pour la validation
-        const nameRegex = /^[a-zA-Z]+$/;
-        const phoneRegex = /^[0-9]{10}$/;
+        const nomRegex = /^[a-zA-Z]+$/;
+        const telephoneRegex = /^[0-9]{10}$/;
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         // Validation du nom
         if (nom === '') {
             nomError.innerHTML = "Ce champ est obligatoire";
             valid = false;
-        } else if (!nameRegex.test(nom)) {
+        } else if (!nomRegex.test(nom)) {
             nomError.innerHTML = "Le champ doit contenir uniquement des lettres";
             valid = false;
         }
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (prenom === '') {
             prenomError.innerHTML = "Ce champ est obligatoire";
             valid = false;
-        } else if (!nameRegex.test(prenom)) {
+        } else if (!nomRegex.test(prenom)) {
             prenomError.innerHTML = "Le champ doit contenir uniquement des lettres";
             valid = false;
         }
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (telephone === '') {
             telephoneError.innerHTML = "Ce champ est obligatoire";
             valid = false;
-        } else if (!phoneRegex.test(telephone)) {
+        } else if (!telephoneRegex.test(telephone)) {
             telephoneError.innerHTML = "Le numéro de téléphone doit contenir 10 chiffres";
             valid = false;
         }

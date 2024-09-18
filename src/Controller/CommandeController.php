@@ -25,18 +25,17 @@ class CommandeController extends AbstractController
         $panier = $session->get('panier', []);
 
         if (empty($panier)) {
-            $this->addFlash(' alert alert-warning', 'Votre panier est vide');
+            $this->addFlash('alert alert-warning', 'Votre panier est vide');
             return $this->redirectToRoute('app_Accueil');
         }
 
-        $user = $this->getUser();
+        $utilisateur = $this->getUser();
         
-        if (!$user instanceof Utilisateur) {
+        if (!$utilisateur instanceof Utilisateur) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
 
-        // Récupérer la réduction de l'utilisateur
-        $reduction = $user->getReduction();
+        $reduction = $utilisateur->getReduction();
         
         $commande = new Commande();
         $form = $this->createForm(CommandeFormType::class, $commande);
@@ -56,13 +55,12 @@ class CommandeController extends AbstractController
 
         $totalHT -= $reduction;
 
-        // Calcul du montant TTC
-        $tva = 20.00; // TVA fixe de 20%
+        $tva = 20.00;
         $totalTTC = $totalHT * (1 + $tva / 100);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Si le panier n'est pas vide, on creer la commande
-            $commande->setIdUtilisateur($user);
+            // Si est pas vide on crée la commande
+            $commande->setUtilisateur($utilisateur);
             $commande->setDateCommande(new \DateTime());
             $commande->setIdFacture(random_int(1, 1000000));
             $commande->setEtatFacture('Payer');
@@ -70,12 +68,24 @@ class CommandeController extends AbstractController
             $commande->setTVA($tva);
             $commande->setMontantHT($totalHT);
             $commande->setMontantTTC($totalTTC);
-            $commande->setMoyenPaiement($form->get('moyen_paiement')->getData()); // on récupére le moyen de paiement
-            $commande->setAdresseFacturation($form->get('adresse_facturation')->getData());
-            $commande->setVilleFacturation($form->get('ville_facturation')->getData());
-            $commande->setTelephoneFacturation($form->get('telephone_facturation')->getData());
-            $commande->setMailFacturation($form->get('mail_facturation')->getData());
-            $commande->setAdresseLivraison($form->get('adresse_livraison')->getData());
+
+            // Vérification du formulaire
+            $adresseFacturation = $form->get('adresse_facturation')->getData();
+            $villeFacturation = $form->get('ville_facturation')->getData();
+            $telephoneFacturation = $form->get('telephone_facturation')->getData();
+            $mailFacturation = $form->get('mail_facturation')->getData();
+            $adresseLivraison = $form->get('adresse_livraison')->getData();
+            
+            if ($adresseFacturation === null || $villeFacturation === null || $telephoneFacturation === null || $mailFacturation === null || $adresseLivraison === null) {
+                $this->addFlash('alert alert-danger', 'Tous les champs doivent être remplis.');
+                return $this->redirectToRoute('app_commande_ajout');
+            }
+
+            $commande->setAdresseFacturation($adresseFacturation);
+            $commande->setVilleFacturation($villeFacturation);
+            $commande->setTelephoneFacturation($telephoneFacturation);
+            $commande->setMailFacturation($mailFacturation);
+            $commande->setAdresseLivraison($adresseLivraison);
 
             foreach ($panier as $item => $quantité) {
                 $seComposeDe = new SeComposeDe();
@@ -89,7 +99,7 @@ class CommandeController extends AbstractController
             $em->flush();
             $session->remove('panier');
 
-            $this->addFlash('message', 'Commande créée avec succès');
+            $this->addFlash('alert alert-success', 'Commande prise en compte');
             return $this->redirectToRoute('app_Accueil');
         }
 
